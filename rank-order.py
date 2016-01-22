@@ -60,14 +60,14 @@ def getColumns(inFile, delim=tab, header=True):
     return cols, indexToName
 
 #files
-matrix_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/matrix.txt"
-temporal_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/temp.txt"
-ordered_matrix_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/ordered_matrix.txt"
-final_matrix_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/final_matrix.txt"
-students_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/students.txt"
-final_students_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/final_students.txt"
-items_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/items.txt"
-final_items_file = "/Users/cristianfranco95/Documents/Universidad/Python/Clustering/final_items.txt"
+matrix_file = "/Users/lauricdd/Documents/Github/Clustering/matrix.txt"
+temporal_file = "/Users/lauricdd/Documents/Github/Clustering/temp.txt"
+ordered_matrix_file = "/Users/lauricdd/Documents/Github/Clustering/ordered_matrix.txt"
+final_matrix_file = "/Users/lauricdd/Documents/Github/Clustering/final_matrix.txt"
+students_file = "/Users/lauricdd/Documents/Github/Clustering/students.txt"
+final_students_file = "/Users/lauricdd/Documents/Github/Clustering/final_students.txt"
+items_file = "/Users/lauricdd/Documents/Github/Clustering/items.txt"
+final_items_file = "/Users/lauricdd/Documents/Github/Clustering/final_items.txt"
 
 open_matrix_file = open(matrix_file, "r")
 
@@ -79,7 +79,7 @@ open_matrix_file_data = open_matrix_file.read()
 #number of elements of the file
 elements = string.split(open_matrix_file_data)
 elements_number = len(elements)
-print "\nelements =", elements_number
+print "elements =", elements_number
 
 #file lines number
 #lines = len(open(file).readlines())
@@ -88,11 +88,11 @@ with open(matrix_file) as open_final_items_file:
     for students_file_lines in open_final_items_file:
        if students_file_lines.strip():
           lines_number += 1
-print "\nlines =", lines_number
+print "lines =", lines_number
 
 #number of elements per line : elements = lines*columns then columns = elements/lines
 columns_number = elements_number/lines_number
-print "\ncolumns =", columns_number
+print "columns =", columns_number
 open_matrix_file.close()
 
 #split file by lines and save on matrix
