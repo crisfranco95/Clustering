@@ -68,6 +68,7 @@ students_file = "/Users/lauricdd/Documents/Github/Clustering/students.txt"
 final_students_file = "/Users/lauricdd/Documents/Github/Clustering/final_students.txt"
 items_file = "/Users/lauricdd/Documents/Github/Clustering/items.txt"
 final_items_file = "/Users/lauricdd/Documents/Github/Clustering/final_items.txt"
+students_and_pows = "/Users/lauricdd/Documents/Github/Clustering/students_and_pows.txt"
 
 open_matrix_file = open(matrix_file, "r")
 
@@ -176,7 +177,7 @@ temp = [0 for col in range(columns_number)]
 
 #read students_final file
 open_final_students_file = open(final_students_file, "r")
-open_matrix_file_data = open_final_students_file.readlines()
+open_final_students_file_readlines = open_final_students_file.readlines()
 
 while value < lines_number+1:
     aux = 0 
@@ -193,18 +194,18 @@ while value < lines_number+1:
     
     #read matrix file
     open_matrix_file = open(matrix_file, "r")
-    matrix_file_lines = open_matrix_file.readlines()
-    temp = matrix_file_lines[aux]
+    open_matrix_file_readlines = open_matrix_file.readlines()
+    temp = open_matrix_file_readlines[aux]
     #temp[aux] = l[aux]
-    print "temp", temp
+    #print "temp", temp
         
     #read students file  
     open_students_file = open(students_file, "r")
     students_file_lines = open_students_file.readlines()
-    print "line[aux]", students_file_lines[aux]
+    #print "line[" + aux + "]" + students_file_lines[aux]
        
     #override final_students file
-    open_matrix_file_data[flag] = students_file_lines[aux]
+    open_final_students_file_readlines[flag] = students_file_lines[aux]
                 
     #write temp file
     open_final_items_file = open(temporal_file, "w")
@@ -220,8 +221,7 @@ while value < lines_number+1:
             ordered_matrix[flag][i] = students_file_lines[i+2]
             i += 1
     open_final_items_file.close()
-    
-    print     
+
     value += 1
     flag += 1
     open_matrix_file.close()
@@ -230,9 +230,14 @@ while value < lines_number+1:
 
 #write back on students_final file
 open_final_students_file = open(final_students_file, "w")
-open_final_students_file.writelines(open_matrix_file_data)
+#open_final_students_file.writelines(open_final_students_file_readlines)
+#open_final_students_file_readlines size
+count = open_final_students_file_readlines.__len__()
+for i in range(0, count):
+    open_final_students_file.write(open_final_students_file_readlines[i])
+    if i == 0:
+        open_final_students_file.write("\n")
 open_final_students_file.close()
-
 
 #for i in range(lines_number):
  # for j in range(columns_number):
@@ -366,7 +371,7 @@ for i in range(lines_number):
 open_final_matrix_file.close()
 
 
-#Calculate new weights from potences of 2
+#Calculate new weights from pows of 2
 num = 0
 sum_num = 0
 sum_lines_pow = [0 for i in range(0, lines_number)]
@@ -379,3 +384,16 @@ for i in range(lines_number):
     num = 0
 
 print "sum_lines_pow", sum_lines_pow
+
+#Write students and new weights on a file, separated by tab
+open_final_students = open(final_students_file, "r")
+students_file_lines = open_final_students.readlines()
+open_students_and_pows = open(students_and_pows, "w")
+
+count = open_final_students_file_readlines.__len__()
+for i in range(0, count):
+    open_students_and_pows.write(students_file_lines[i] + "\t" + str(sum_lines_pow[i]))
+    open_students_and_pows.write("\n")
+
+open_final_students.close()
+open_students_and_pows.close()
