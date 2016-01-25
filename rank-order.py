@@ -234,9 +234,7 @@ open_final_students_file = open(final_students_file, "w")
 #open_final_students_file_readlines size
 count = open_final_students_file_readlines.__len__()
 for i in range(0, count):
-    open_final_students_file.write(open_final_students_file_readlines[i])
-    if i == 0:
-        open_final_students_file.write("\n")
+    open_final_students_file.write(open_final_students_file_readlines[i].replace('\r\n','') + '\n')
 open_final_students_file.close()
 
 #for i in range(lines_number):
@@ -384,16 +382,16 @@ for i in range(lines_number):
     num = 0
 
 print "sum_lines_pow", sum_lines_pow
+print "sum_lines_pow size", sum_lines_pow.__len__()
 
 #Write students and new weights on a file, separated by tab
 open_final_students = open(final_students_file, "r")
 students_file_lines = open_final_students.readlines()
 open_students_and_pows = open(students_and_pows, "w")
 
-count = open_final_students_file_readlines.__len__()
+count = lines_number #open_final_students_file_readlines.__len__()
 for i in range(0, count):
-    open_students_and_pows.write(students_file_lines[i] + "\t" + str(sum_lines_pow[i]))
-    open_students_and_pows.write("\n")
+    open_students_and_pows.write(students_file_lines[i].replace('\n','') + '\t' + str(sum_lines_pow[i]) + '\n')
 
 open_final_students.close()
 open_students_and_pows.close()
